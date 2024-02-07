@@ -2,7 +2,7 @@
 The dotfiles for my [Eww](https://github.com/elkowar/eww) bar, as a replacement for i3blocks and i3status in i3wm. Very basic features only. 
 
 ## Note
-The dotfiles are configured to function only in i3 on X11. Using them with other wm on Wayland may result in errors, but the logic can be easily adapted to your desired wms for compatibility. 
+The dotfiles are configured to function only in i3 on X11. Using them with other wm on Wayland may result in errors, but the logics can be easily adapted to your desired wms for compatibility. 
 
 ### Some dependencies
 `ttf-nerd-fonts-symbols`, `jq`, `pulseaudio`, `pulseaudio-ctl`, `NetworkManager`. 
