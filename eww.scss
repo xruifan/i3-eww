@@ -1,0 +1,58 @@
+* {
+  all: unset; // Unsets everything so you can style everything from scratch
+}
+
+.bar {
+  opacity: 1.0;
+  padding: 15px;
+}
+
+.sidestuff {
+  background-color: DarkGrey;
+  padding: 1px 10px;
+  border-radius: 15px;
+  font-size: large;
+
+  * {
+    padding: 0 5px;
+  }
+}
+
+.workspaces, .time {
+  background-color: DarkGrey;
+  padding: 3px 10px;
+  border-radius: 15px;
+}
+
+.workspaces button, .power-buttons button {
+  padding: 5px 10px;
+  border-radius: 15px;
+  margin: 0 2px;
+}
+
+.active-workspace {
+  background-color: #474747;
+}
+
+.focused-workspace {
+  background-color: #202020;
+}
+
+.urgent-workspace {
+  background-color: DarkRed;
+}
+
+.time * {
+  padding: 0 10px;
+}
+
+.power-buttons button {
+  &:hover {
+    transition: 200ms linear background-color, border-radius;
+    background-color: rgba(#3d464e, 0.6);
+  }
+}
+
+.power-buttons .shutdown {
+  color: rgba(#f87070, 0.8);
+}

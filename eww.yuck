@@ -1,0 +1,2 @@
+;;;; include eww bar
+(include "eww_bar.yuck")

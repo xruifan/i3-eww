@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ "$(nmcli r wifi | awk '{print $1}')" == "enabled" ]; then
+    nmcli r wifi off
+else
+    nmcli r wifi on
+fi

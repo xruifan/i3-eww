@@ -1,0 +1,11 @@
+#!/bin/sh
+volume_output=$(pactl get-sink-volume $(pactl info | grep 'Default Sink' | awk '{print $3}'))
+mute_status=$(pactl get-sink-mute $(pactl info | grep 'Default Sink' | awk '{print $3}') | awk '{print $2}')
+
+if [ "$mute_status" == "yes" ]; then
+  echo -1  # return -1 if muted
+else
+  # extract the volume percentage (remove trailing %)
+  volume=$(echo "$volume_output" | awk '{print $5}' | tr -d '%')
+  echo $volume
+fi
