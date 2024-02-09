@@ -116,15 +116,16 @@
     (audio :high "" :medium "󰖀" :low "󰕿" :muted "󰝟"
             :volume volume)
     (label :text "󰍛   ${round(EWW_CPU.avg, 1)}%")
-    (label :text "   ${EWW_TEMPS.CORETEMP_PACKAGE_ID_0}℃")
+    (label :text "   ${round((EWW_TEMPS.ACPITZ_TEMP1 + EWW_TEMPS.ACPITZ_TEMP2 + 
+      EWW_TEMPS.ACPITZ_TEMP3 + EWW_TEMPS.ACPITZ_TEMP4) / 4, 1)}℃")
     ;(label :text "󱛟   ${round(EWW_RAM.used_mem / 1048576, 2)}MB/${round(EWW_RAM.total_mem / 1048576, 2)}MB")
     (label :text "󱛟   ${round(EWW_RAM.used_mem_perc, 1)}%")
     (label :text "   ${round((1 - (EWW_DISK['/'].free / EWW_DISK['/'].total)) * 100, 1)}%")
 
-    ;(battery :status {EWW_BATTERY.BAT0.status}
-    ;        :battery {EWW_BATTERY.BAT0.capacity}
-    ;        :charge "󰂄" :full "󰁹" :ninety "󰂂" :eighty "󰂁" :seventy "󰂀" :sixty "󰁿" 
-    ;        :fifty "󰁾"  :fourty "󰁽" :thirty "󰁼" :twenty "󰁻" :eleventy "󱃍")
+    (battery :status {EWW_BATTERY.BAT1.status}
+            :capacity {EWW_BATTERY.BAT1.capacity}
+            :charge "󰂄" :full "󰁹" :ninety "󰂂" :eighty "󰂁" :seventy "󰂀" :sixty "󰁿" 
+            :fifty "󰁾"  :fourty "󰁽" :thirty "󰁼" :twenty "󰁻" :eleventy "󱃍")
     (buttons 
       :shutdown "systemctl poweroff" 
       :reboot "systemctl reboot"
@@ -132,7 +133,7 @@
       :suspend "systemctl suspend"
       :hibernate "systemctl hibernate"
       :shutdown_icon "⏻" 
-      :reboot_icon ""
+      :reboot_icon "󰑓"
       :logout_icon "󰿅"
       :suspend_icon "󰏦"
       :hibernate_icon "󰜗"
@@ -144,7 +145,7 @@
 (defwidget battery [capacity status eleventy twenty thirty fourty
                     fifty sixty seventy eighty ninety full charge]
   (box :space-evenly false :spacing 8
-    (label :text {status == 'Charging' ? charge :
+    (label :text {(status == 'Charging' ? charge :
       capacity < 10 ? eleventy :
         capacity < 20 ? twenty :
           capacity < 30 ? thirty :
@@ -153,7 +154,9 @@
                 capacity < 60 ? sixty :
                   capacity < 70 ? seventy :
                     capacity < 80 ? eighty :
-                      capacity < 90 ? ninety : full})))
+                      capacity < 90 ? ninety : full) + "  ${capacity}%"})
+  )
+)
 
 
 (defpoll net :interval "1s"
