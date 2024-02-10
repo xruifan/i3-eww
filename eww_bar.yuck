@@ -167,7 +167,6 @@
                     good okay slow]
   (eventbox
     :onmiddleclick `$HOME/.config/eww/scripts/togglewifi`
-    :onclick "pavucontrol &"
     (box
     :space-evenly false
     :spacing 8
