@@ -115,9 +115,9 @@
             :okay "󰤢" :slow "󰤟")
     (audio :high "" :medium "󰖀" :low "󰕿" :muted "󰝟"
             :volume volume)
-    (label :text "󰍛   ${round(EWW_CPU.avg, 1)}%")
-    (label :text "   ${round((EWW_TEMPS.ACPITZ_TEMP1 + EWW_TEMPS.ACPITZ_TEMP2 + 
-      EWW_TEMPS.ACPITZ_TEMP3 + EWW_TEMPS.ACPITZ_TEMP4) / 4, 1)}℃")
+    (cpu_usage :icon "󰍛")
+
+    (temp :icon "")
 
     (ram :icon "󱛟")
 
@@ -143,18 +143,33 @@
 )
 
 
+(defwidget cpu_usage [icon]
+  (box  
+    (label :text "${icon}   ${round(EWW_CPU.avg, 1)}%")
+  )
+)
+
+
+(defwidget temp [icon]
+  (box  
+    (label :text "${icon}   ${round((EWW_TEMPS.ACPITZ_TEMP1 + EWW_TEMPS.ACPITZ_TEMP2 + 
+    EWW_TEMPS.ACPITZ_TEMP3 + EWW_TEMPS.ACPITZ_TEMP4) / 4, 1)}℃")
+  )
+)
+
+
 (defwidget ram [icon]
   (box  
-        :tooltip "${round(EWW_RAM.used_mem / 1048576, 2)}MiB/${round(EWW_RAM.total_mem / 1048576, 2)}MiB"
-        (label :text "${icon}   ${round(EWW_RAM.used_mem_perc, 1)}%")
+    :tooltip "${round(EWW_RAM.used_mem / 1048576, 2)}MiB/${round(EWW_RAM.total_mem / 1048576, 2)}MiB"
+    (label :text "${icon}   ${round(EWW_RAM.used_mem_perc, 1)}%")
   )
 )
 
 
 (defwidget disk [icon]
   (box 
-        :tooltip `"/": ${round(EWW_DISK['/'].used / 1000000000, 2)}GB/${round(EWW_DISK['/'].total / 1000000000, 2)}GB`
-        (label :text "   ${round((EWW_DISK['/'].used_perc), 1)}%")
+    :tooltip `"/": ${round(EWW_DISK['/'].used / 1000000000, 2)}GB/${round(EWW_DISK['/'].total / 1000000000, 2)}GB`
+    (label :text "${icon}   ${round((EWW_DISK['/'].used_perc), 1)}%")
   )
 )
 
@@ -203,9 +218,9 @@
   :onmiddleclick "pulseaudio-ctl mute"
   :onclick "pavucontrol &"
     (box 
-      (label :text {volume < 0? `${muted}  Muted` : 
+      (label :text {volume < 0? `${muted}   Muted` : 
         volume < 30 ? `${low}    ${volume}%` :
-          volume < 70 ? `${medium}  ${volume}%` : `${high}    ${volume}%`})
+          volume < 70 ? `${medium}    ${volume}%` : `${high}    ${volume}%`})
     )
   )
 )
