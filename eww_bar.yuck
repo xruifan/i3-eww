@@ -118,9 +118,10 @@
     (label :text "󰍛   ${round(EWW_CPU.avg, 1)}%")
     (label :text "   ${round((EWW_TEMPS.ACPITZ_TEMP1 + EWW_TEMPS.ACPITZ_TEMP2 + 
       EWW_TEMPS.ACPITZ_TEMP3 + EWW_TEMPS.ACPITZ_TEMP4) / 4, 1)}℃")
-    ;(label :text "󱛟   ${round(EWW_RAM.used_mem / 1048576, 2)}MB/${round(EWW_RAM.total_mem / 1048576, 2)}MB")
-    (label :text "󱛟   ${round(EWW_RAM.used_mem_perc, 1)}%")
-    (label :text "   ${round((1 - (EWW_DISK['/'].free / EWW_DISK['/'].total)) * 100, 1)}%")
+
+    (ram :icon "󱛟")
+
+    (disk :icon "")
 
     (battery :status {EWW_BATTERY.BAT1.status}
             :capacity {EWW_BATTERY.BAT1.capacity}
@@ -138,6 +139,22 @@
       :suspend_icon "󰏦"
       :hibernate_icon "󰜗"
     )
+  )
+)
+
+
+(defwidget ram [icon]
+  (box  
+        :tooltip "${round(EWW_RAM.used_mem / 1048576, 2)}MiB/${round(EWW_RAM.total_mem / 1048576, 2)}MiB"
+        (label :text "${icon}   ${round(EWW_RAM.used_mem_perc, 1)}%")
+  )
+)
+
+
+(defwidget disk [icon]
+  (box 
+        :tooltip `"/": ${round(EWW_DISK['/'].used / 1000000000, 2)}GB/${round(EWW_DISK['/'].total / 1000000000, 2)}GB`
+        (label :text "   ${round((EWW_DISK['/'].used_perc), 1)}%")
   )
 )
 
@@ -199,9 +216,6 @@
 
 
 (defpoll date :interval "1s" :initial "N/A" "date +'%a %d %b %Y'")
-(defpoll day :interval "1s" :initial "N/A" "date +'%d'")
-(defpoll month :interval "1s" :initial "N/A" "date +'%m'")
-(defpoll year :interval "1s" :initial "N/A" "date +'%Y'")
 (defpoll time :interval "1s" :initial "N/A" "date +'%H:%M:%S'")
 (defvar time_rev false)
 (defwidget time-date []
