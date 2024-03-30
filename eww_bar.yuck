@@ -127,6 +127,12 @@
             :capacity {EWW_BATTERY.BAT1.capacity}
             :charge "󰂄" :full "󰁹" :ninety "󰂂" :eighty "󰂁" :seventy "󰂀" :sixty "󰁿" 
             :fifty "󰁾"  :fourty "󰁽" :thirty "󰁼" :twenty "󰁻" :eleventy "󱃍")
+
+    (label :text "|")
+    (systray 
+      :pack_direction "right"
+      :icon-size 16)
+
     (buttons 
       :shutdown "systemctl poweroff" 
       :reboot "systemctl reboot"
