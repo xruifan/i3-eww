@@ -35,6 +35,10 @@ Toggle wifi radio:
 
 ![overview](./images/wifi-toggle.gif?raw=false)
 
+### Systray
+DBus system tray:
+
+![overview](./images/systray.png?raw=false)
 
 ### Powermenu
 Reveal power options on cursor hover:
