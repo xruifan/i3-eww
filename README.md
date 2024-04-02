@@ -9,8 +9,6 @@ The dotfiles are configured to function only in i3 on X11. Using them with other
 
 
 ## Overview
-### Workflow
-![workflow](./images/workflow.png?raw=false)
 ### Workspace
 Switch workspace by cursor clicking:
 
