@@ -1,3 +1,5 @@
+
+
 # Eww bar
 The dotfiles for my [Eww](https://github.com/elkowar/eww) bar, as a replacement for i3blocks and i3status in i3wm. Very basic features only. 
 
@@ -6,6 +8,8 @@ The dotfiles are configured to function only in i3 on X11. Using them with other
 
 ### Some dependencies
 `ttf-nerd-fonts-symbols`, `jq`, `pulseaudio`, `pulseaudio-ctl`, `alsa-utils`, `alsa-plugins`, `NetworkManager`. 
+
+Run `eww_launch.sh` to start the daemon and open the bar.
 
 
 ## Overview
@@ -42,4 +46,3 @@ DBus system tray:
 Reveal power options on cursor hover:
 
 ![overview](./images/powermenu.gif?raw=false)
-
