@@ -1,4 +1,5 @@
 #!/bin/sh
+export LANG=C
 volume_output=$(pactl get-sink-volume $(pactl info | grep 'Default Sink' | awk '{print $3}'))
 mute_status=$(pactl get-sink-mute $(pactl info | grep 'Default Sink' | awk '{print $3}') | awk '{print $2}')
 
