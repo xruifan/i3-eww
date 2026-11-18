@@ -199,7 +199,7 @@
 
 (defpoll net :interval "1s"
   :initial `N/A`
-  `nmcli -t -f SIGNAL,ACTIVE device wifi \
+  `LANG=C nmcli -t -f SIGNAL,ACTIVE device wifi \
     | awk -F':' '{if($2=="yes")print$1}'`)
 (defwidget network [strength offline excellent
                     good okay slow]
